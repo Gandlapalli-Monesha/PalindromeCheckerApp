@@ -1,36 +1,29 @@
-// PalindromeDequeCheck.java
-import java.util.Deque;
-import java.util.LinkedList;
+// PalindromeStackCheck.java
+import java.util.Stack;
 
-public class PalindromeDequeCheck {
+public class PalindromeStackCheck {
 
     // Main Method – Entry point of the Java application
     public static void main(String[] args) {
         // Hardcoded string literal
         String word = "madam";
 
-        // Create a Deque (Double Ended Queue)
-        Deque<Character> deque = new LinkedList<>();
+        // Create a stack of characters
+        Stack<Character> stack = new Stack<>();
 
-        // Insert characters into deque
-        for (char ch : word.toCharArray()) {
-            deque.add(ch);
+        // Push each character into the stack
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
         }
 
-        // Compare front and rear until empty or mismatch
-        boolean isPalindrome = true;
-        while (deque.size() > 1) {
-            char front = deque.removeFirst(); // remove from front
-            char rear = deque.removeLast();   // remove from rear
-
-            if (front != rear) {
-                isPalindrome = false;
-                break;
-            }
+        // Pop characters to build the reversed string
+        String reversed = "";
+        while (!stack.isEmpty()) {
+            reversed = reversed + stack.pop();
         }
 
-        // Display result
-        if (isPalindrome) {
+        // Compare original and reversed using equals()
+        if (word.equals(reversed)) {
             System.out.println("\"" + word + "\" is a palindrome.");
         } else {
             System.out.println("\"" + word + "\" is not a palindrome.");
